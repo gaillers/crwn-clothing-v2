@@ -33,10 +33,11 @@ const Home = () => {
 
   return (
     <>
-      <Outlet />
+      <Outlet /> 
       <Directory categories={categories} />
     </>
   );
 };
 
 export default Home;
+ 
