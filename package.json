@@ -1,7 +1,7 @@
 {
   "name": "vite-project",
   "private": true,
-  "version": "0.6.0",
+  "version": "0.6.8",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -28,6 +28,7 @@
     "react-router-dom": "^6.18.0",
     "sass": "^1.69.5",
     "sort-by": "^1.2.0",
+    "styled-components": "^6.1.8",
     "vite": "^4.4.5"
   }
 }
