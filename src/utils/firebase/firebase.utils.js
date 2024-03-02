@@ -17,12 +17,12 @@ import {
   collection,
   writeBatch,
   query,
-  getDocs
+  getDocs,
 } from "firebase/firestore";
 
 /*
-* @param Firestore Configuration
-*/
+ * @param Firestore Configuration
+ */
 const firebaseConfig = {
   apiKey: "AIzaSyDHj2_CypieFzkFggip0KORSLUZ3Aw-g-w",
   authDomain: "gold-blueprint-296319.firebaseapp.com",
@@ -42,25 +42,30 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
-export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
+export const signInWithGooglePopup = () =>
+  signInWithPopup(auth, googleProvider);
+export const signInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore();
 
 /*
-* @param Get Productios + Categories from Firestore
-*/
-export const addCollectionAndDocuments = async ( collectionKey,objectsToAdd) => {
+ * @param Get Productios + Categories from Firestore
+ */
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
   const batch = writeBatch(db);
   const collectionRef = collection(db, collectionKey);
-  
+
   objectsToAdd.forEach((object) => {
-     const docRef = doc(collectionRef, object.title.toLowerCase());
-     batch.set(docRef, object);
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
   });
 
   await batch.commit();
-  console.log('done');
+  console.log("done");
 };
 
 export const getCategoriesAndDocuments = async () => {
@@ -68,18 +73,12 @@ export const getCategoriesAndDocuments = async () => {
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-
-  return categoryMap;
+  return querySnapshot.docs.map((doc) => doc.data());
 };
 
 /*
-* @param Create User & Authorization
-*/
+ * @param Create User & Authorization
+ */
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation = {}
