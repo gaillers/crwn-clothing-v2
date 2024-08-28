@@ -8,6 +8,7 @@ import { rootSaga } from './root-saga';
 import { rootReducer } from './root-reducer';
 
 export type RootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = typeof store.dispatch;
 
 declare global {
   interface Window {
