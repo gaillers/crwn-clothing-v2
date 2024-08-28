@@ -46,7 +46,7 @@ export const googleSignInStart = withMatcher((): GoogleSignInStart =>
 export const emailSignInStart = withMatcher((email: string, password: string): EmailSignInStart =>
   createAction(USER_ACTION_TYPES.EMAIL_SIGN_IN_START, { email, password }));
 
-export const signInSuccess = withMatcher((user: UserData): SignInSuccess =>
+export const signInSuccess = withMatcher((user: UserData & { id: string }): SignInSuccess =>
   createAction(USER_ACTION_TYPES.SIGN_IN_SUCCESS, user));
 
 export const signInFailed = withMatcher((error: Error): SignInFailed =>
@@ -61,7 +61,7 @@ export const signUpSuccess = withMatcher((user: User, additionalDetails: Additio
 export const signUpFailed = withMatcher((error: Error): SignUpFailed =>
   createAction(USER_ACTION_TYPES.SIGN_UP_FAILED, error));
 
-export const signOutStart = withMatcher((): SignOutStart => 
+export const signOutStart = withMatcher((): SignOutStart =>
   createAction(USER_ACTION_TYPES.SIGN_OUT_START));
 
 export const signOutSuccess = withMatcher((): SignOutSuccess =>
