@@ -17,5 +17,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "src/custom.d.ts", "src/env.d.ts"]
+  "include": ["src", "src/custom.d.ts", "src/env.d.ts", "src/components/button/__tests__"]
 }
